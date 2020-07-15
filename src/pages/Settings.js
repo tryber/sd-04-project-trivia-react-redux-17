@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React from 'react';
+// import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
 
-function Settings (){
-  return <div>Settings</div>
+function Settings() {
+  return <div>Settings</div>;
 }
 
 // const mapStateToProps = (state) => ({
@@ -14,4 +14,4 @@ function Settings (){
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Settings);
 
-export default Settings
+export default Settings;

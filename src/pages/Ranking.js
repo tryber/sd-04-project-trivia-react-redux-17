@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React from 'react';
+// import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
 
-function Ranking (){
-  return <div>Ranking</div>
+function Ranking() {
+  return <div>Ranking</div>;
 }
 
 // const mapStateToProps = (state) => ({
@@ -14,4 +14,4 @@ function Ranking (){
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Ranking);
 
-export default Ranking
+export default Ranking;

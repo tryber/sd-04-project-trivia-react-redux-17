@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
-import logo from './trivia.png';
+// import logo from './trivia.png';
 import './App.css';
-import { Home, Feedback, Game, NotFound, Ranking, Settings } from './pages'
+import { Home, Feedback, Game, NotFound, Ranking, Settings } from './pages';
 
 export default function App() {
   return (
