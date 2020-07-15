@@ -2,8 +2,8 @@ import React from 'react';
 // import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 
-function Feedback (){
-  return <div>Feedback</div>
+function Feedback() {
+  return <div>Feedback</div>;
 }
 
 // const mapStateToProps = (state) => ({
@@ -14,4 +14,4 @@ function Feedback (){
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Feedback);
 
-export default Feedback
+export default Feedback;

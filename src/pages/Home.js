@@ -1,9 +1,9 @@
-import React  from 'react';
+import React from 'react';
 // import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 
-function Home (){
-  return <div>Home</div>
+function Home() {
+  return <div>Home</div>;
 }
 
 // const mapStateToProps = (state) => ({

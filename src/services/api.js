@@ -5,7 +5,7 @@ export async function fetchGameToken() {
   return response.token;
 }
 
-export async function fetchGameToken(token) {
+export async function getQuestions(token) {
   const response = fetch(`https://opentdb.com/api.php?amount=5&token=${token}`)
     .then((file) => file.json())
     .catch((erro) => console.log(erro));
