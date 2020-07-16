@@ -1,17 +1,14 @@
 import React from 'react';
-// import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import Login from '../components/Login';
+
 
 function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <h1>HOME</h1>
+      <Login />
+    </div>
+  );
 }
-
-// const mapStateToProps = (state) => ({
-// });
-
-// const mapDispatchToProps = (dispatch) => ({
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
 export default Home;
