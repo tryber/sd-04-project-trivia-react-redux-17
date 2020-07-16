@@ -4,8 +4,7 @@ import { REQUEST_TRIVIA, RECEIVE_TRIVIA_SUCCESS, RECEIVE_TRIVIA_ERROR } from '..
 const INITIAL_STATE = {
   isFetching: true,
   token: '',
-  hits: 0,
-  points: 0,
+  correct: 0,
 };
 
 function reducer(state = INITIAL_STATE, action) {

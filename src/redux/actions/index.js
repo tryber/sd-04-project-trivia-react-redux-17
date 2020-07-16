@@ -1,4 +1,4 @@
-import { getToken, getQuestions } from '../../services/api';
+import { getToken } from '../../services/api';
 
 export const REQUEST_TRIVIA = 'REQUEST_TRIVIA';
 export const RECEIVE_TRIVIA_SUCCESS = 'RECEIVE_TRIVIA_SUCCESS';
@@ -29,7 +29,7 @@ export function fetchTrivia() {
   };
 }
 
-export const saveQuestions = (questions) => {
-  type: SAVE_QUESTIONS, questions;
-};
-
+export const saveQuestions = (questions) => ({
+  type: SAVE_QUESTIONS,
+  questions,
+});
