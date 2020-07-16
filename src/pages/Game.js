@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchTrivia } from '../redux/actions';
 import { getQuestions } from '../services/api';
+import Header from '../components/Header';
 // import PropTypes from 'prop-types';
 
 function shuffleArray(received) {
@@ -26,21 +27,24 @@ function renderQuestion(currentQuestion) {
 
   return (
     <div>
-      <h2 data-testid="question-category">{category}</h2>
-      <h1 data-testid="question-text">{question}</h1>
+      <Header />
       <div>
-        {questions.map((elem) => {
-          if (elem === correctAnswer) {
-            return <input type="button" key={elem} data-testid="correct-answer" value={elem} />;
-          }
-          return (
-            <input
-              type="button"
-              data-testid={`wrong-answer-${incorrectAnswers.indexOf(elem)}`}
-              value={elem}
-            />
-          );
-        })}
+        <h2 data-testid="question-category">{category}</h2>
+        <h1 data-testid="question-text">{question}</h1>
+        <div>
+          {questions.map((elem) => {
+            if (elem === correctAnswer) {
+              return <input type="button" key={elem} data-testid="correct-answer" value={elem} />;
+            }
+            return (
+              <input
+                type="button"
+                data-testid={`wrong-answer-${incorrectAnswers.indexOf(elem)}`}
+                value={elem}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

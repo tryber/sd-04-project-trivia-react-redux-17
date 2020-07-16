@@ -4,7 +4,7 @@ export const REQUEST_TRIVIA = 'REQUEST_TRIVIA';
 export const RECEIVE_TRIVIA_SUCCESS = 'RECEIVE_TRIVIA_SUCCESS';
 export const RECEIVE_TRIVIA_ERROR = 'RECEIVE_TRIVIA_ERROR';
 export const SAVE_QUESTIONS = 'SAVE_QUESTIONS';
-
+export const USER_LOGIN = 'USER_LOGIN';
 
 export const requestTrivia = () => ({
   type: REQUEST_TRIVIA,
@@ -33,4 +33,9 @@ export function fetchTrivia() {
 export const saveQuestions = (questions) => ({
   type: SAVE_QUESTIONS,
   questions,
+});
+export const userLogin = ({ userName, userEmail }) => ({
+  type: USER_LOGIN,
+  userName,
+  userEmail,
 });

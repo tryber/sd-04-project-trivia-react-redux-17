@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { getToken } from '../services/api';
-import { userLogin } from '../redux/actions/actionsLogin';
+import { userLogin } from '../redux/actions';
 
 class Login extends React.Component {
   constructor(props) {
@@ -111,13 +111,8 @@ class Login extends React.Component {
   }
 }
 
-Login.propTypes = {
-  userLoginStorage: PropTypes.func.isRequired,
-  userIsLogged: PropTypes.bool.isRequired,
-};
-
 const mapStateToProps = (state) => ({
-  userIsLogged: state.loginReducer.isLogged,
+  userIsLogged: state.reducer.isLogged,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -125,3 +120,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
+Login.propTypes = {
+  userLoginStorage: PropTypes.func.isRequired,
+  userIsLogged: PropTypes.bool.isRequired,
+};

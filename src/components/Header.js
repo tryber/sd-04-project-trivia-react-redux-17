@@ -31,16 +31,16 @@ function Header({ userEmail, userName, score }) {
   );
 }
 
+const mapStateToProps = (state) => ({
+  userName: state.reducer.userName,
+  userEmail: state.reducer.userEmail,
+  correct: state.reducer.correct,
+});
+
+export default connect(mapStateToProps)(Header);
+
 Header.propTypes = {
   userName: PropTypes.string.isRequired,
   userEmail: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
 };
-
-const mapStateToProps = (state) => ({
-  userName: state.loginReducer.userName,
-  userEmail: state.loginReducer.userEmail,
-  // score: ,
-});
-
-export default connect(mapStateToProps)(Header);
