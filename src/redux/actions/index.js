@@ -1,12 +1,11 @@
-export import { getToken } from 'src/services/api';
+import { getToken } from '../../services/api';
 
 export const REQUEST_TRIVIA = 'REQUEST_TRIVIA';
 export const RECEIVE_TRIVIA_SUCCESS = 'RECEIVE_TRIVIA_SUCCESS';
 export const RECEIVE_TRIVIA_ERROR = 'RECEIVE_TRIVIA_ERROR';
 
-
 export const requestTrivia = () => ({
-  type: REQUEST_TRIVIA
+  type: REQUEST_TRIVIA,
 });
 
 export const receiveTriviaSuccess = (data) => ({
