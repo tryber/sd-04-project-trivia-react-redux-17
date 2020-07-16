@@ -26,24 +26,21 @@ function renderQuestion(currentQuestion) {
 
   return (
     <div>
-      <Header />
+      <h2 data-testid="question-category">{category}</h2>
+      <h1 data-testid="question-text">{question}</h1>
       <div>
-        <h2 data-testid="question-category">{category}</h2>
-        <h1 data-testid="question-text">{question}</h1>
-        <div>
-          {questions.map((elem) => {
-            if (elem === correctAnswer) {
-              return <input type="button" key={elem} data-testid="correct-answer" value={elem} />;
-            }
-            return (
-              <input
-                type="button"
-                data-testid={`wrong-answer-${incorrectAnswers.indexOf(elem)}`}
-                value={elem}
-              />
-            );
-          })}
-        </div>
+        {questions.map((elem) => {
+          if (elem === correctAnswer) {
+            return <input type="button" key={elem} data-testid="correct-answer" value={elem} />;
+          }
+          return (
+            <input
+              type="button"
+              data-testid={`wrong-answer-${incorrectAnswers.indexOf(elem)}`}
+              value={elem}
+            />
+          );
+        })}
       </div>
     </div>
   );
@@ -70,7 +67,12 @@ class Game extends Component {
     const { questions, counter } = this.state;
     if (isFetching || questions.length === 0) return <p>Loading...</p>;
     console.log(questions);
-    return <div>{renderQuestion(questions[counter])}</div>;
+    return (
+      <div>
+        <Header />
+        {renderQuestion(questions[counter])}
+      </div>
+    );
   }
 }
 
