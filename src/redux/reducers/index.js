@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import {
-  REQUEST_TRIVIA,
-  RECEIVE_TRIVIA_SUCCESS,
-  RECEIVE_TRIVIA_ERROR,
+  REQUEST_TOKEN,
+  RECEIVE_TOKEN_SUCCESS,
+  RECEIVE_TOKEN_ERROR,
   USER_LOGIN,
 } from '../actions';
 
@@ -17,18 +17,18 @@ const INITIAL_STATE = {
 
 function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case REQUEST_TRIVIA:
+    case REQUEST_TOKEN:
       return {
         ...state,
         isFetching: true,
       };
-    case RECEIVE_TRIVIA_SUCCESS:
+    case RECEIVE_TOKEN_SUCCESS:
       return {
         ...state,
         isFetching: false,
         token: action.data.token,
       };
-    case RECEIVE_TRIVIA_ERROR:
+    case RECEIVE_TOKEN_ERROR:
       return {
         ...state,
         isFetching: false,

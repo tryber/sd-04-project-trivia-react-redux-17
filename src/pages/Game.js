@@ -69,7 +69,7 @@ class Game extends Component {
     const { isFetching } = this.props;
     const { questions, counter } = this.state;
     if (isFetching || questions.length === 0) return <p>Loading...</p>;
-    console.log(questions[counter]);
+    console.log(questions);
     return <div>{renderQuestion(questions[counter])}</div>;
   }
 }
