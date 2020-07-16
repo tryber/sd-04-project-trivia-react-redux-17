@@ -13,8 +13,6 @@ export const getToken = async () => {
   return data;
 };
 
-
-
 // export async function getQuestions(token) {
 //   const response = fetch(`https://opentdb.com/api.php?amount=5&token=${token}`)
 //     .then((file) => file.json())

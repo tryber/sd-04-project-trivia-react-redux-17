@@ -1,12 +1,12 @@
-export import { getToken } from 'src/services/api';
+import { getToken, getQuestions } from '../../services/api';
 
 export const REQUEST_TRIVIA = 'REQUEST_TRIVIA';
 export const RECEIVE_TRIVIA_SUCCESS = 'RECEIVE_TRIVIA_SUCCESS';
 export const RECEIVE_TRIVIA_ERROR = 'RECEIVE_TRIVIA_ERROR';
-
+export const SAVE_QUESTIONS = 'SAVE_QUESTIONS';
 
 export const requestTrivia = () => ({
-  type: REQUEST_TRIVIA
+  type: REQUEST_TRIVIA,
 });
 
 export const receiveTriviaSuccess = (data) => ({
@@ -19,12 +19,17 @@ export const receiveTriviaError = (error) => ({
   error,
 });
 
-export function fetchTrivia(token) {
+export function fetchTrivia() {
   return (dispatch) => {
     dispatch(requestTrivia());
-    getToken(token).then(
+    return getToken().then(
       (data) => dispatch(receiveTriviaSuccess(data)),
       (error) => dispatch(receiveTriviaError(error.message)),
     );
   };
 }
+
+export const saveQuestions = (questions) => {
+  type: SAVE_QUESTIONS, questions;
+};
+
