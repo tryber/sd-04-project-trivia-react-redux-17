@@ -5,6 +5,7 @@ export const RECEIVE_TRIVIA_SUCCESS = 'RECEIVE_TRIVIA_SUCCESS';
 export const RECEIVE_TRIVIA_ERROR = 'RECEIVE_TRIVIA_ERROR';
 export const SAVE_QUESTIONS = 'SAVE_QUESTIONS';
 
+
 export const requestTrivia = () => ({
   type: REQUEST_TRIVIA,
 });

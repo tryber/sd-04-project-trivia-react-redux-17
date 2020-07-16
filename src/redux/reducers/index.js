@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { REQUEST_TRIVIA, RECEIVE_TRIVIA_SUCCESS, RECEIVE_TRIVIA_ERROR } from '../actions';
+import loginReducer from './loginReducer';
 
 const INITIAL_STATE = {
   isFetching: true,
@@ -32,6 +33,7 @@ function reducer(state = INITIAL_STATE, action) {
 
 const rootReducer = combineReducers({
   reducer,
+  loginReducer,
 });
 
 export default rootReducer;
