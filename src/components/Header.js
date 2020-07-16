@@ -5,7 +5,7 @@ import MD5 from 'crypto-js/md5';
 
 const hashEmail = (email) => MD5(email).toString().toLowerCase().trim();
 
-function Header({ userEmail, userName, score }) {
+function Header({ userEmail, userName, correct }) {
   const hash = hashEmail(userEmail);
   return (
     <header className="">
@@ -23,7 +23,7 @@ function Header({ userEmail, userName, score }) {
       </div>
       <div>
         <span className="" data-testid="header-score">
-          {score}
+          {correct * 20}
         </span>
         <span>Pontos:</span>
       </div>
@@ -42,5 +42,5 @@ export default connect(mapStateToProps)(Header);
 Header.propTypes = {
   userName: PropTypes.string.isRequired,
   userEmail: PropTypes.string.isRequired,
-  score: PropTypes.number.isRequired,
+  correct: PropTypes.number.isRequired,
 };
