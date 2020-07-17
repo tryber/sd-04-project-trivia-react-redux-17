@@ -13,7 +13,7 @@ function Feedback({ player: { assertions, score } }) {
         <p data-testid="feedback-total-score">Você acertou {assertions} questões!</p>
         <p data-testid="feedback-total-questions">Um total de {score} pontos</p>
         <Link data-testid="btn-ranking" to="/ranking">VER RANKING</Link>
-        <br/>
+        <br />
         <Link data-testid="btn-play-again" to="/game">JOGAR NOVAMENTE</Link>
       </div>
     </div>
@@ -27,5 +27,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(Feedback);
 
 Feedback.propTypes = {
-  player: PropTypes.objectOf(PropTypes.object.isRequired),
+  player: PropTypes.objectOf(PropTypes.object).isRequired,
 };
