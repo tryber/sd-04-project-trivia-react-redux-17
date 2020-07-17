@@ -1,10 +1,13 @@
-import { getToken } from '../../services/api';
+import { getToken, getCategories } from '../../services/api';
 
 export const REQUEST_TOKEN = 'REQUEST_TOKEN';
 export const RECEIVE_TOKEN_SUCCESS = 'RECEIVE_TOKEN_SUCCESS';
 export const RECEIVE_TOKEN_ERROR = 'RECEIVE_TOKEN_ERROR';
 export const SAVE_QUESTIONS = 'SAVE_QUESTIONS';
 export const USER_LOGIN = 'USER_LOGIN';
+export const REQUEST_CATEGORIES = 'REQUEST_CATEGORIES';
+export const RECEIVE_CATEGORIES_SUCCESS = 'RECEIVE_CATEGORIES_SUCCESS';
+export const RECEIVE_CATEGORIES_ERROR = 'RECEIVE_CATEGORIES_ERROR';
 
 export const requestToken = () => ({
   type: REQUEST_TOKEN,
@@ -39,3 +42,27 @@ export const userLogin = ({ userName, userEmail }) => ({
   userName,
   userEmail,
 });
+
+export const requestCategories = () => ({
+  type: REQUEST_CATEGORIES,
+});
+
+export const receivedCategoriesSuccess = (data) => ({
+  type: RECEIVE_CATEGORIES_SUCCESS,
+  data,
+});
+
+export const receivedCategoriesError = (error) => ({
+  type: RECEIVE_CATEGORIES_ERROR,
+  error,
+});
+
+export function fetchCategories() {
+  return (dispatch) => {
+    dispatch(requestCategories());
+    return getCategories().then(
+      (data) => dispatch(receivedCategoriesSuccess(data)),
+      (error) => dispatch(receivedCategoriesError(error.message)),
+    );
+  };
+}
