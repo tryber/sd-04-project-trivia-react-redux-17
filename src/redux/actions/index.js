@@ -34,8 +34,8 @@ export const saveQuestions = (questions) => ({
   type: SAVE_QUESTIONS,
   questions,
 });
-export const userLogin = ({ userName, userEmail }) => ({
+export const userLogin = ({ name, email }) => ({
   type: USER_LOGIN,
-  userName,
-  userEmail,
+  name,
+  email,
 });

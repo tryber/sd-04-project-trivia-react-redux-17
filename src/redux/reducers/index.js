@@ -37,8 +37,8 @@ function reducer(state = INITIAL_STATE, action) {
     case USER_LOGIN:
       return {
         ...state,
-        userEmail: action.userEmail,
-        userName: action.userName,
+        email: action.email,
+        name: action.name,
         isLogged: true,
       };
     default:

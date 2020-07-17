@@ -5,20 +5,20 @@ import MD5 from 'crypto-js/md5';
 
 const hashEmail = (email) => MD5(email).toString().toLowerCase().trim();
 
-function Header({ userEmail, userName, assertions }) {
-  const hash = hashEmail(userEmail);
+function Header({ email, name, assertions }) {
+  const hash = hashEmail(email);
   return (
     <header className="">
       <div>
         <img
           className=""
           src={`https://www.gravatar.com/avatar/${hash}?d=https://www.gravatar.com/avatar/2d3bf5b67282f5f466e503d7022abcf3`}
-          alt={`${userName} avatar`}
+          alt={`${name} avatar`}
           data-testid="header-profile-picture"
         />
         <span className="" data-testid="header-player-name">
           Jogador:
-          {userName}
+          {name}
         </span>
       </div>
       <div>
@@ -32,15 +32,15 @@ function Header({ userEmail, userName, assertions }) {
 }
 
 const mapStateToProps = (state) => ({
-  userName: state.reducer.userName,
-  userEmail: state.reducer.userEmail,
+  name: state.reducer.name,
+  email: state.reducer.email,
   assertions: state.reducer.assertions,
 });
 
 export default connect(mapStateToProps)(Header);
 
 Header.propTypes = {
-  userName: PropTypes.string.isRequired,
-  userEmail: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
   assertions: PropTypes.number.isRequired,
 };

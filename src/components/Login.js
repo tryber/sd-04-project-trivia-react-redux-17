@@ -10,8 +10,8 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-      userEmail: '',
-      userName: '',
+      email: '',
+      name: '',
       token: '',
     };
   }
@@ -24,8 +24,8 @@ class Login extends React.Component {
   }
 
   isDisabled() {
-    const { userName, userEmail } = this.state;
-    if (userName === '' || userEmail === '') return true;
+    const { name, email } = this.state;
+    if (name === '' || email === '') return true;
     return false;
   }
 
@@ -41,7 +41,7 @@ class Login extends React.Component {
   }
 
   renderEmail() {
-    const { userEmail } = this.state;
+    const { email } = this.state;
 
     return (
       <label className="" htmlFor="input-gravatar-email">
@@ -49,16 +49,16 @@ class Login extends React.Component {
         <input
           data-testid="input-gravatar-email"
           id="input-gravatar-email"
-          onChange={(e) => this.handleChange('userEmail', e.target.value)}
+          onChange={(e) => this.handleChange('email', e.target.value)}
           type="email"
-          value={userEmail}
+          value={email}
         />
       </label>
     );
   }
 
   renderName() {
-    const { userName } = this.state;
+    const { name } = this.state;
 
     return (
       <label className="" htmlFor="input-player-name">
@@ -66,9 +66,9 @@ class Login extends React.Component {
         <input
           data-testid="input-player-name"
           id="input-player-name"
-          onChange={(e) => this.handleChange('userName', e.target.value)}
+          onChange={(e) => this.handleChange('name', e.target.value)}
           type="text"
-          value={userName}
+          value={name}
         />
       </label>
     );
