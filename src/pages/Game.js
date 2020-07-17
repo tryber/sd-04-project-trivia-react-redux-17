@@ -19,9 +19,9 @@ function colorAnswers() {
   const wrong = Array.from(document.querySelectorAll('.wrong'));
   const correct = document.querySelector('.correct');
   wrong.forEach((item) => {
-    item.className = 'wrongStyle';
+    item.classList.add('wrongStyle');
   });
-  correct.className = 'correctStyle';
+  correct.classList.add('correctStyle');
 }
 
 function renderQuestion(currentQuestion) {
