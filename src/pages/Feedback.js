@@ -35,7 +35,7 @@ const mapStateToProps = (state) => ({
 
 }); */
 
-export default connect(mapStateToProps, /* mapDispatchToProps */)(Feedback);
+export default connect(mapStateToProps /* mapDispatchToProps */)(Feedback);
 
 Feedback.propTypes = {
   isFetching: PropTypes.bool.isRequired,
