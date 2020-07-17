@@ -1,17 +1,16 @@
 import { combineReducers } from 'redux';
-import {
-  REQUEST_TOKEN,
-  RECEIVE_TOKEN_SUCCESS,
-  RECEIVE_TOKEN_ERROR,
-  USER_LOGIN,
-} from '../actions';
+import { REQUEST_TOKEN, RECEIVE_TOKEN_SUCCESS, RECEIVE_TOKEN_ERROR, USER_LOGIN } from '../actions';
 
 const INITIAL_STATE = {
   isFetching: true,
   token: '',
-  correct: 0,
-  userEmail: '',
-  userName: '',
+  player: {
+    name: '',
+    assertions: 0,
+    score: 0,
+    gravatarEmail: '',
+  },
+  // ranking: [{ name: '', score: 0, picture: '' }],
   isLogged: false,
 };
 
@@ -36,8 +35,11 @@ function reducer(state = INITIAL_STATE, action) {
     case USER_LOGIN:
       return {
         ...state,
-        userEmail: action.userEmail,
-        userName: action.userName,
+        player: {
+          ...state.player,
+          name: action.userName,
+          gravatarEmail: action.userEmail,
+        },
         isLogged: true,
       };
     default:
