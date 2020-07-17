@@ -24,6 +24,32 @@ function colorAnswers() {
   correct.classList.add('correctStyle');
 }
 
+function renderCorrectInput(elem) {
+  return (
+    <input
+      type="button"
+      key={elem}
+      className="correct"
+      data-testid="correct-answer"
+      value={elem}
+      onClick={() => colorAnswers()}
+    />
+  );
+}
+
+function renderWrongInput(elem, incorrectAnswers) {
+  return (
+    <input
+      type="button"
+      key={elem}
+      className="wrong"
+      data-testid={`wrong-answer-${incorrectAnswers.indexOf(elem)}`}
+      value={elem}
+      onClick={() => colorAnswers()}
+    />
+  );
+}
+
 function renderQuestion(currentQuestion) {
   const {
     incorrect_answers: incorrectAnswers,
@@ -41,27 +67,9 @@ function renderQuestion(currentQuestion) {
       <div>
         {questions.map((elem) => {
           if (elem === correctAnswer) {
-            return (
-              <input
-                type="button"
-                key={elem}
-                className="correct"
-                data-testid="correct-answer"
-                value={elem}
-                onClick={() => colorAnswers()}
-              />
-            );
+            return renderCorrectInput(elem);
           }
-          return (
-            <input
-              type="button"
-              key={elem}
-              className="wrong"
-              data-testid={`wrong-answer-${incorrectAnswers.indexOf(elem)}`}
-              value={elem}
-              onClick={() => colorAnswers()}
-            />
-          );
+          return renderWrongInput(elem, incorrectAnswers);
         })}
       </div>
     </div>
