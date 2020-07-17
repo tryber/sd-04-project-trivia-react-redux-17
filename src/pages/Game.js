@@ -15,6 +15,18 @@ function shuffleArray(received) {
   return array;
 }
 
+function displayButtonNext() {
+  return (
+    <input
+      type="button"
+      data-testid="btn-next"
+      className="next"
+      style={{ display: 'none' }}
+      // onClick={() => displayNextQuestion()}
+      value="Próximo"
+    />
+  );
+}
 function colorAnswers() {
   const wrong = Array.from(document.querySelectorAll('.wrong'));
   const correct = document.querySelector('.correct');
@@ -22,6 +34,8 @@ function colorAnswers() {
     item.classList.add('wrongStyle');
   });
   correct.classList.add('correctStyle');
+  const next = document.querySelector('.next');
+  next.style.display = 'block';
 }
 
 function renderCorrectInput(elem) {
@@ -72,6 +86,7 @@ function renderQuestion(currentQuestion) {
           return renderWrongInput(elem, incorrectAnswers);
         })}
       </div>
+      {displayButtonNext()}
     </div>
   );
 }
