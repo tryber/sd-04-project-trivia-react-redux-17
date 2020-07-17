@@ -9,7 +9,7 @@ import {
 const INITIAL_STATE = {
   isFetching: true,
   token: '',
-  correct: 0,
+  assertions: 0,
   userEmail: '',
   userName: '',
   isLogged: false,

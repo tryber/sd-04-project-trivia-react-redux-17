@@ -77,7 +77,7 @@ class Game extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isFething: state.reducer.isFetching,
+  isFetching: state.reducer.isFetching,
   token: state.reducer.token,
 });
 
