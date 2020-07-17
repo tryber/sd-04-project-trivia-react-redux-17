@@ -12,8 +12,8 @@ function Feedback({ assertions }) {
         <h3 data-testid="feedback-text">{assertions < 3 ? 'Podia ser melhor...' : 'Mandou bem!'}</h3>
         <p data-testid="feedback-total-score">Você acertou {assertions * 20} questões!</p>
         <p data-testid="feedback-total-questions">Um total de {assertions} pontos</p>
-        <Link to="/ranking">VER RANKING</Link>
-        <Link to="/game">JOGAR NOVAMENTE</Link>
+        <Link data-testid="btn-ranking" to="/ranking">VER RANKING</Link>
+        <Link data-testid="btn-play-again" to="/game">JOGAR NOVAMENTE</Link>
       </div>
     </div>
   );
