@@ -10,7 +10,7 @@ const INITIAL_STATE = {
   isFetching: true,
   token: '',
   assertions: 0,
-  score: 0,
+  score: 0, // vamos usar?
   email: '',
   name: '',
   isLogged: false,
