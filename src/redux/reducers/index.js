@@ -10,8 +10,9 @@ const INITIAL_STATE = {
   isFetching: true,
   token: '',
   assertions: 0,
-  userEmail: '',
-  userName: '',
+  score: 0,
+  email: '',
+  name: '',
   isLogged: false,
 };
 
