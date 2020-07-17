@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchTrivia } from '../redux/actions';
 import { getQuestions } from '../services/api';
 import Header from '../components/Header';
+import './Game.css';
 
 function shuffleArray(received) {
   const array = [...received];
@@ -12,6 +13,15 @@ function shuffleArray(received) {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
+}
+
+function colorAnswers() {
+  const wrong = Array.from(document.querySelectorAll('.wrong'));
+  const correct = document.querySelector('.correct');
+  wrong.forEach((item) => {
+    item.className = 'wrongStyle';
+  });
+  correct.className = 'correctStyle';
 }
 
 function renderQuestion(currentQuestion) {
@@ -31,13 +41,25 @@ function renderQuestion(currentQuestion) {
       <div>
         {questions.map((elem) => {
           if (elem === correctAnswer) {
-            return <input type="button" key={elem} data-testid="correct-answer" value={elem} />;
+            return (
+              <input
+                type="button"
+                key={elem}
+                className="correct"
+                data-testid="correct-answer"
+                value={elem}
+                onClick={() => colorAnswers()}
+              />
+            );
           }
           return (
             <input
               type="button"
+              key={elem}
+              className="wrong"
               data-testid={`wrong-answer-${incorrectAnswers.indexOf(elem)}`}
               value={elem}
+              onClick={() => colorAnswers()}
             />
           );
         })}
@@ -77,7 +99,7 @@ class Game extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isFething: state.reducer.isFetching,
+  isFetching: state.reducer.isFetching,
   token: state.reducer.token,
 });
 
