@@ -31,11 +31,11 @@ const mapStateToProps = (state) => ({
   assertions: state.reducer.assertions,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+/* const mapDispatchToProps = (dispatch) => ({
 
-});
+}); */
 
-export default connect(mapStateToProps, mapDispatchToProps)(Feedback);
+export default connect(mapStateToProps, /* mapDispatchToProps */)(Feedback);
 
 Feedback.propTypes = {
   isFetching: PropTypes.bool.isRequired,
