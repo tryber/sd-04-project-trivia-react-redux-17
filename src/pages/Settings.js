@@ -3,7 +3,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 function Settings() {
-  return <div>Settings</div>;
+  return <div data-testid="settings-title">Settings</div>;
 }
 
 // const mapStateToProps = (state) => ({
