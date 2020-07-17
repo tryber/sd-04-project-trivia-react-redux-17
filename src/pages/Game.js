@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchTrivia } from '../redux/actions';
 import { getQuestions } from '../services/api';
-// import PropTypes from 'prop-types';
+import Header from '../components/Header';
 
 function shuffleArray(received) {
   const array = [...received];
@@ -20,7 +21,6 @@ function renderQuestion(currentQuestion) {
     category,
     question,
   } = currentQuestion;
-
   let questions = [...incorrectAnswers, correctAnswer];
   questions = shuffleArray(questions);
 
@@ -66,15 +66,19 @@ class Game extends Component {
     const { isFetching } = this.props;
     const { questions, counter } = this.state;
     if (isFetching || questions.length === 0) return <p>Loading...</p>;
-    console.log(questions[counter]);
-    return <div>{renderQuestion(questions[counter])}</div>;
+    console.log(questions);
+    return (
+      <div>
+        <Header />
+        {renderQuestion(questions[counter])}
+      </div>
+    );
   }
 }
 
 const mapStateToProps = (state) => ({
   isFething: state.reducer.isFetching,
   token: state.reducer.token,
-  questions: state.reducer.questions,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -82,3 +86,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
+
+Game.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  token: PropTypes.string.isRequired,
+  fetchTriviaToken: PropTypes.func.isRequired,
+};

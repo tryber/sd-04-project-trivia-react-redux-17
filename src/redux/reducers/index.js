@@ -1,30 +1,44 @@
 import { combineReducers } from 'redux';
-import { REQUEST_TRIVIA, RECEIVE_TRIVIA_SUCCESS, RECEIVE_TRIVIA_ERROR } from '../actions';
-import loginReducer from './loginReducer';
+import {
+  REQUEST_TOKEN,
+  RECEIVE_TOKEN_SUCCESS,
+  RECEIVE_TOKEN_ERROR,
+  USER_LOGIN,
+} from '../actions';
 
 const INITIAL_STATE = {
   isFetching: true,
   token: '',
   correct: 0,
+  userEmail: '',
+  userName: '',
+  isLogged: false,
 };
 
 function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case REQUEST_TRIVIA:
+    case REQUEST_TOKEN:
       return {
         ...state,
         isFetching: true,
       };
-    case RECEIVE_TRIVIA_SUCCESS:
+    case RECEIVE_TOKEN_SUCCESS:
       return {
         ...state,
         isFetching: false,
         token: action.data.token,
       };
-    case RECEIVE_TRIVIA_ERROR:
+    case RECEIVE_TOKEN_ERROR:
       return {
         ...state,
         isFetching: false,
+      };
+    case USER_LOGIN:
+      return {
+        ...state,
+        userEmail: action.userEmail,
+        userName: action.userName,
+        isLogged: true,
       };
     default:
       return state;
@@ -33,7 +47,6 @@ function reducer(state = INITIAL_STATE, action) {
 
 const rootReducer = combineReducers({
   reducer,
-  loginReducer,
 });
 
 export default rootReducer;
