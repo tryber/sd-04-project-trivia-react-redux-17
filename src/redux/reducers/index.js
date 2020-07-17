@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux';
-import { REQUEST_TOKEN, RECEIVE_TOKEN_SUCCESS, RECEIVE_TOKEN_ERROR, USER_LOGIN } from '../actions';
+import {
+  REQUEST_TOKEN,
+  RECEIVE_TOKEN_SUCCESS,
+  RECEIVE_TOKEN_ERROR,
+  USER_LOGIN,
+} from '../actions';
 
 const INITIAL_STATE = {
   isFetching: true,
