@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 
-function Feedback({ player: { assertions, score} }) {
+function Feedback({ player: { assertions, score } }) {
   return (
     <div>
       <Header />
@@ -26,5 +26,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(Feedback);
 
 Feedback.propTypes = {
-  assertions: PropTypes.number.isRequired,
+  player: PropTypes.object.isRequired,
 };
