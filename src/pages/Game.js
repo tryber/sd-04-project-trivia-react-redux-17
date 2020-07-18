@@ -1,102 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchTrivia } from '../redux/actions';
+import {
+  fetchToken,
+  addAssertion,
+  setTimer,
+  resetTimer,
+} from '../redux/actions';
 import { getQuestions } from '../services/api';
 import Header from '../components/Header';
+import Timer from '../components/Timer';
 import './Game.css';
-
-function shuffleArray(received) {
-  const array = [...received];
-  for (let i = array.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-function displayButtonNext() {
-  return (
-    <input
-      type="button"
-      data-testid="btn-next"
-      className="next"
-      style={{ display: 'none' }}
-      // onClick={() => displayNextQuestion()}
-      value="Próximo"
-    />
-  );
-}
-function colorAnswers() {
-  const wrong = Array.from(document.querySelectorAll('.wrong'));
-  const correct = document.querySelector('.correct');
-  wrong.forEach((item) => {
-    item.classList.add('wrongStyle');
-  });
-  correct.classList.add('correctStyle');
-  const next = document.querySelector('.next');
-  next.style.display = 'block';
-}
-
-function renderCorrectInput(elem) {
-  return (
-    <input
-      type="button"
-      key={elem}
-      className="correct"
-      data-testid="correct-answer"
-      value={elem}
-      onClick={() => colorAnswers()}
-    />
-  );
-}
-
-function renderWrongInput(elem, incorrectAnswers) {
-  return (
-    <input
-      type="button"
-      key={elem}
-      className="wrong"
-      data-testid={`wrong-answer-${incorrectAnswers.indexOf(elem)}`}
-      value={elem}
-      onClick={() => colorAnswers()}
-    />
-  );
-}
-
-function renderQuestion(currentQuestion) {
-  const {
-    incorrect_answers: incorrectAnswers,
-    correct_answer: correctAnswer,
-    category,
-    question,
-  } = currentQuestion;
-  let questions = [...incorrectAnswers, correctAnswer];
-  questions = shuffleArray(questions);
-
-  return (
-    <div>
-      <h2 data-testid="question-category">{category}</h2>
-      <h1 data-testid="question-text">{question}</h1>
-      <div>
-        {questions.map((elem) => {
-          if (elem === correctAnswer) {
-            return renderCorrectInput(elem);
-          }
-          return renderWrongInput(elem, incorrectAnswers);
-        })}
-      </div>
-      {displayButtonNext()}
-    </div>
-  );
-}
+import Questions from '../components/Questions';
 
 class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
       questions: [],
-      counter: 0,
     };
   }
 
@@ -107,15 +28,36 @@ class Game extends Component {
     this.setState({ questions: questions.results });
   }
 
+  // setTimer() {
+  //   this.setState((state) => {
+  //     if (state.timer === 0) return { timer: 30 };
+  //     return { timer: state.timer - 1 };
+  //   });
+  // }
+
+  // resetTimer() {
+  //   this.setState({ timer: 30 });
+  // }
+
   render() {
-    const { isFetching } = this.props;
-    const { questions, counter } = this.state;
+    const {
+      isFetching,
+      addCorrectAssertion,
+      setTimerGlobal,
+      resetTimerGlobal,
+    } = this.props;
+    const { questions, timer } = this.state;
     if (isFetching || questions.length === 0) return <p>Loading...</p>;
-    console.log(questions);
     return (
       <div>
         <Header />
-        {renderQuestion(questions[counter])}
+        <Questions
+          questions={questions}
+          addCorrectAssertion={addCorrectAssertion}
+          goToNextQuestion={this.goToNextQuestion}
+        />
+        {/* {renderQuestion(questions[counter], addCorrectAssertion, this.goToNextQuestion)} */}
+        <Timer timer={timer} setTimer={setTimerGlobal} resetTimer={resetTimerGlobal} />
       </div>
     );
   }
@@ -124,10 +66,15 @@ class Game extends Component {
 const mapStateToProps = (state) => ({
   isFetching: state.reducer.isFetching,
   token: state.reducer.token,
+  // score: state.reducer.player.score,
+  // assertions: state.reducer.player.score,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTriviaToken: () => dispatch(fetchTrivia()),
+  fetchTriviaToken: () => dispatch(fetchToken()),
+  addCorrectAssertion: () => dispatch(addAssertion()),
+  setTimerGlobal: () => dispatch(setTimer()),
+  resetTimerGlobal: () => dispatch(resetTimer()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
@@ -136,4 +83,7 @@ Game.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
   fetchTriviaToken: PropTypes.func.isRequired,
+  addCorrectAssertion: PropTypes.func.isRequired,
+  setTimerGlobal: PropTypes.func.isRequired,
+  resetTimerGlobal: PropTypes.func.isRequired,
 };

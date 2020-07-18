@@ -4,6 +4,7 @@ import {
   RECEIVE_TOKEN_SUCCESS,
   RECEIVE_TOKEN_ERROR,
   USER_LOGIN,
+  ADD_ASSERTION,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -46,6 +47,14 @@ function reducer(state = INITIAL_STATE, action) {
           gravatarEmail: action.userEmail,
         },
         isLogged: true,
+      };
+    case ADD_ASSERTION:
+      return {
+        ...state,
+        player: {
+          ...state.player,
+          assertions: state.player.assertions + 1,
+        },
       };
     default:
       return state;
