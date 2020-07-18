@@ -123,7 +123,6 @@ class Settings extends React.Component {
       </div>
     );
   }
-}
 
 const mapStateToProps = (state) => ({
   settings: state.reducer.settings,
