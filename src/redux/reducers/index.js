@@ -62,7 +62,7 @@ function reducer(state = INITIAL_STATE, action) {
     case SET_TIMER:
       return {
         ...state,
-        timer: state.timer - 1,
+        timer: state.timer === 0 ? 0 : state.timer - 1,
       };
     case RESET_TIMER:
       return {

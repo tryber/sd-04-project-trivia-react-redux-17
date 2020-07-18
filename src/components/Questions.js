@@ -82,6 +82,8 @@ class Questions extends Component {
 
   goToNextQuestion() {
     this.setState((state) => ({ counter: state.counter + 1 }));
+    const next = document.querySelector('.next');
+    next.style.display = 'none';
   }
 
   // updateAlternatives(question) {
