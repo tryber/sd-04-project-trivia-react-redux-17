@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from '../components/Login';
 
-function Home() {
+export default function Home() {
   return (
     <div>
       <h1>HOME</h1>
@@ -9,5 +9,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;
