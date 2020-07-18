@@ -21,6 +21,7 @@ const INITIAL_STATE = {
     gravatarEmail: '',
   },
   timer: 30,
+  // ranking: [{ name: '', score: 0, picture: '' }],
   isLogged: false,
   settings: {
     category: 'all',
