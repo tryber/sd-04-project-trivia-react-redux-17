@@ -58,7 +58,7 @@ const INITIAL_SETTINGS = {
     category: 'all',
     difficulty: 'all',
     type: 'all',
-  }
+  },
 };
 
 function settingsReducer(state = INITIAL_SETTINGS, action) {
