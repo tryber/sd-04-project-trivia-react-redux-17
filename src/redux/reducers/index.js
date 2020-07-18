@@ -4,6 +4,7 @@ import {
   RECEIVE_TOKEN_SUCCESS,
   RECEIVE_TOKEN_ERROR,
   USER_LOGIN,
+  SAVE_SETTINGS,
   ADD_ASSERTION,
   SET_TIMER,
   RESET_TIMER,
@@ -21,6 +22,11 @@ const INITIAL_STATE = {
   timer: 30,
   // ranking: [{ name: '', score: 0, picture: '' }],
   isLogged: false,
+  settings: {
+    category: 'all',
+    difficulty: 'all',
+    type: 'all',
+  },
 };
 
 function calculateScore(timer, difficulty) {
@@ -59,6 +65,11 @@ function reducer(state = INITIAL_STATE, action) {
         },
         isLogged: true,
       };
+    case SAVE_SETTINGS:
+      return {
+        ...state,
+        settings: action.settings,
+      }
     case ADD_ASSERTION: {
       return {
         ...state,

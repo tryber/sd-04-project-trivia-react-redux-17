@@ -27,3 +27,11 @@ export const getQuestions = async (token) => {
   const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
   return data;
 };
+
+export const getCategories = async () => {
+  const URL_CATEGORIES = 'https://opentdb.com/api_category.php';
+  const response = await fetch(URL_CATEGORIES);
+  const json = response.json();
+  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
+  return data;
+};
