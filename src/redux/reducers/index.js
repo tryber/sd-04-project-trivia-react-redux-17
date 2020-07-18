@@ -4,6 +4,7 @@ import {
   RECEIVE_TOKEN_SUCCESS,
   RECEIVE_TOKEN_ERROR,
   USER_LOGIN,
+  RESET_USER_LOGIN,
   SAVE_SETTINGS,
   ADD_ASSERTION,
   SET_TIMER,
@@ -65,6 +66,11 @@ function reducer(state = INITIAL_STATE, action) {
         },
         isLogged: true,
       };
+    case RESET_USER_LOGIN:
+      return {
+        ...state,
+        isLogged: false,
+      }
     case SAVE_SETTINGS:
       return {
         ...state,

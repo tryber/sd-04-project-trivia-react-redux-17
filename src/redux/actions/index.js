@@ -5,6 +5,7 @@ export const RECEIVE_TOKEN_SUCCESS = 'RECEIVE_TOKEN_SUCCESS';
 export const RECEIVE_TOKEN_ERROR = 'RECEIVE_TOKEN_ERROR';
 export const SAVE_QUESTIONS = 'SAVE_QUESTIONS';
 export const USER_LOGIN = 'USER_LOGIN';
+export const RESET_USER_LOGIN = 'RESET_USER_LOGIN';
 export const SAVE_SETTINGS = 'SAVE_SETTINGS';
 export const ADD_ASSERTION = 'ADD_ASSERTION';
 export const SET_TIMER = 'SET_TIMER';
@@ -42,6 +43,10 @@ export const userLogin = ({ userName, userEmail }) => ({
   type: USER_LOGIN,
   userName,
   userEmail,
+});
+
+export const resetUserLogin = () => ({
+  type: RESET_USER_LOGIN,
 });
 
 export const saveSettings = (settings) => ({

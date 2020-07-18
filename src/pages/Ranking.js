@@ -1,17 +1,28 @@
 import React from 'react';
-// import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import RankingSort from '../components/RankingSort';
 
-function Ranking() {
-  return <div>Ranking</div>;
-}
+const Ranking = ({ isLogged }) => {
+  if (isLogged) {
+    return (
+      <div>
+        <RankingSort />
+      </div>
+    );
+  }
+  return (
+    <span>
+      <Link to="/">Logar!</Link>
+    </span>
+  );
+};
 
-// const mapStateToProps = (state) => ({
-// });
+Ranking.propTypes = {
+  isLogged: PropTypes.bool.isRequired,
+};
 
-// const mapDispatchToProps = (dispatch) => ({
-// });
+const mapStateToProps = (state) => ({ isLogged: state.reducer.isLogged });
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Ranking);
-
-export default Ranking;
+export default connect(mapStateToProps)(Ranking);
