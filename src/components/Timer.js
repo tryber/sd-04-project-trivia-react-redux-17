@@ -5,14 +5,16 @@ import { setTimer, resetTimer } from '../redux/actions';
 
 class Timer extends Component {
   componentDidMount() {
-    const { setTimerGlobal, resetTimerGlobal } = this.props;
-    let counter = 0;
+    const { setTimerGlobal, resetTimerGlobal, timer } = this.props;
+    if (timer === 0) {
+      resetTimerGlobal();
+    }
+
     const looper = setInterval(() => {
-      counter += 1;
       setTimerGlobal();
-      if (counter >= 30) {
-        clearInterval(looper);
+      if (timer === 0) {
         resetTimerGlobal();
+        clearInterval(looper);
       }
     }, 1000);
   }

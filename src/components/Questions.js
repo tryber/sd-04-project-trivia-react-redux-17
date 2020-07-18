@@ -84,11 +84,11 @@ class Questions extends Component {
   }
 
   componentDidUpdate() {
-    const { player } = this.state;
+    const { player } = this.props;
     const localState = {
       player,
     };
-    window.localStorage.setItem('state', JSON.stringify(localState));
+    localStorage.setItem('state', JSON.stringify(localState));
   }
 
   defineAlternativesOrder() {
