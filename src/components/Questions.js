@@ -48,7 +48,7 @@ function renderCorrectInput(elem, addCorrectAssertion, difficulty) {
       className="correct"
       data-testid="correct-answer"
       value={elem}
-      onClick={async () => {
+      onClick={() => {
         colorAnswers();
         addCorrectAssertion(difficulty);
       }}
@@ -85,7 +85,10 @@ class Questions extends Component {
 
   componentDidUpdate() {
     const { player } = this.props;
-    localStorage.setItem('state', JSON.stringify(player));
+    const localState = {
+      player,
+    };
+    localStorage.setItem('state', JSON.stringify(localState));
   }
 
   defineAlternativesOrder() {

@@ -70,12 +70,12 @@ function reducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         isLogged: false,
-      }
+      };
     case SAVE_SETTINGS:
       return {
         ...state,
         settings: action.settings,
-      }
+      };
     case ADD_ASSERTION: {
       return {
         ...state,
