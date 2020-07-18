@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  fetchToken,
-  addAssertion,
-  setTimer,
-  resetTimer,
-} from '../redux/actions';
+import { fetchToken, addAssertion } from '../redux/actions';
 import { getQuestions } from '../services/api';
 import Header from '../components/Header';
 import Timer from '../components/Timer';
@@ -40,13 +35,8 @@ class Game extends Component {
   // }
 
   render() {
-    const {
-      isFetching,
-      addCorrectAssertion,
-      setTimerGlobal,
-      resetTimerGlobal,
-    } = this.props;
-    const { questions, timer } = this.state;
+    const { isFetching, addCorrectAssertion } = this.props;
+    const { questions } = this.state;
     if (isFetching || questions.length === 0) return <p>Loading...</p>;
     return (
       <div>
@@ -57,7 +47,7 @@ class Game extends Component {
           goToNextQuestion={this.goToNextQuestion}
         />
         {/* {renderQuestion(questions[counter], addCorrectAssertion, this.goToNextQuestion)} */}
-        <Timer timer={timer} setTimer={setTimerGlobal} resetTimer={resetTimerGlobal} />
+        <Timer />
       </div>
     );
   }
@@ -66,15 +56,13 @@ class Game extends Component {
 const mapStateToProps = (state) => ({
   isFetching: state.reducer.isFetching,
   token: state.reducer.token,
-  // score: state.reducer.player.score,
+  // timer: state.reducer.timer,
   // assertions: state.reducer.player.score,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchTriviaToken: () => dispatch(fetchToken()),
   addCorrectAssertion: () => dispatch(addAssertion()),
-  setTimerGlobal: () => dispatch(setTimer()),
-  resetTimerGlobal: () => dispatch(resetTimer()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
@@ -84,6 +72,4 @@ Game.propTypes = {
   token: PropTypes.string.isRequired,
   fetchTriviaToken: PropTypes.func.isRequired,
   addCorrectAssertion: PropTypes.func.isRequired,
-  setTimerGlobal: PropTypes.func.isRequired,
-  resetTimerGlobal: PropTypes.func.isRequired,
 };

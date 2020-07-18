@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import {
+  setTimer,
+  resetTimer,
+} from '../redux/actions';
 
-export default class Timer extends Component {
+class Timer extends Component {
   componentDidMount() {
-    const { setTimer, resetTimer, timer } = this.props;
+    const { setTimerGlobal, resetTimerGlobal, timer } = this.props;
     if (timer === 0) {
-      resetTimer();
+      resetTimerGlobal();
     }
     setInterval(() => {
-      setTimer();
+      setTimerGlobal();
     }, 1000);
   }
 
@@ -18,8 +23,19 @@ export default class Timer extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  timer: state.reducer.timer,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setTimerGlobal: () => dispatch(setTimer()),
+  resetTimerGlobal: () => dispatch(resetTimer()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);
+
 Timer.propTypes = {
-  setTimer: PropTypes.func.isRequired,
-  resetTimer: PropTypes.func.isRequired,
+  setTimerGlobal: PropTypes.func.isRequired,
+  resetTimerGlobal: PropTypes.func.isRequired,
   timer: PropTypes.number.isRequired,
 };

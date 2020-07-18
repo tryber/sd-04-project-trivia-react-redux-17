@@ -5,6 +5,8 @@ import {
   RECEIVE_TOKEN_ERROR,
   USER_LOGIN,
   ADD_ASSERTION,
+  SET_TIMER,
+  RESET_TIMER,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -16,6 +18,7 @@ const INITIAL_STATE = {
     score: 0,
     gravatarEmail: '',
   },
+  timer: 30,
   // ranking: [{ name: '', score: 0, picture: '' }],
   isLogged: false,
 };
@@ -55,6 +58,16 @@ function reducer(state = INITIAL_STATE, action) {
           ...state.player,
           assertions: state.player.assertions + 1,
         },
+      };
+    case SET_TIMER:
+      return {
+        ...state,
+        timer: state.timer - 1,
+      };
+    case RESET_TIMER:
+      return {
+        ...state,
+        timer: 30,
       };
     default:
       return state;

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import {
+  resetTimer,
+} from '../redux/actions';
 
 function shuffleArray(received) {
   const array = [...received];
@@ -11,7 +15,7 @@ function shuffleArray(received) {
   return array;
 }
 
-function displayButtonNext(goToNextQuestion) {
+function displayButtonNext(goToNextQuestion, resetTimerGlobal) {
   return (
     <input
       type="button"
@@ -20,6 +24,7 @@ function displayButtonNext(goToNextQuestion) {
       style={{ display: 'none' }}
       onClick={() => {
         goToNextQuestion();
+        resetTimerGlobal();
       }}
       value="Próximo"
     />
@@ -66,7 +71,7 @@ function renderWrongInput(elem, incorrectAnswers) {
   );
 }
 
-export default class Questions extends Component {
+class Questions extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -84,7 +89,7 @@ export default class Questions extends Component {
   // }
 
   render() {
-    const { questions, addCorrectAssertion } = this.props;
+    const { questions, addCorrectAssertion, resetTimerGlobal } = this.props;
     const { counter } = this.state;
 
     if (counter === 5) return <Redirect to="/feedback" />;
@@ -109,17 +114,28 @@ export default class Questions extends Component {
             return renderWrongInput(elem, incorrectAnswers);
           })}
         </div>
-        {displayButtonNext(this.goToNextQuestion, this.updateAlternatives)}
+        {displayButtonNext(this.goToNextQuestion, resetTimerGlobal)}
       </div>
     );
   }
 }
 
+// const mapStateToProps = (state) => ({
+//   timer: state.reducer.timer,
+// });
+
+const mapDispatchToProps = (dispatch) => ({
+  // setTimerGlobal: () => dispatch(setTimer()),
+  resetTimerGlobal: () => dispatch(resetTimer()),
+});
+
+export default connect(null, mapDispatchToProps)(Questions);
+
 Questions.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
   addCorrectAssertion: PropTypes.func.isRequired,
+  resetTimerGlobal: PropTypes.func.isRequired,
   // token: PropTypes.string.isRequired,
-  // fetchTriviaToken: PropTypes.func.isRequired,
   // // score: PropTypes.number.isRequired,
   // // assertions: PropTypes.number.isRequired,
 };
