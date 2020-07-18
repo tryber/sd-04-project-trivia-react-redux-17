@@ -59,7 +59,7 @@ const INITIAL_SETTINGS = {
     difficulty: 'all',
     type: 'all',
   }
-}
+};
 
 function settingsReducer(state = INITIAL_SETTINGS, action) {
   switch (action.type) {

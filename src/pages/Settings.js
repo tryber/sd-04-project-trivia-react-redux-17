@@ -29,7 +29,7 @@ class Settings extends React.Component {
           settings,
         }));
       })
-      .catch((error) => { throw error });
+      .catch((error) => { throw error; });
   }
 
   onChangeUpdateSettings(field, value) {
