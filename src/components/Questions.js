@@ -86,10 +86,6 @@ class Questions extends Component {
     next.style.display = 'none';
   }
 
-  // updateAlternatives(question) {
-  //   const { incorrect_answers: incorrectAnswers, correct_answer: correctAnswer } = question;
-  // }
-
   render() {
     const { questions, addCorrectAssertion, resetTimerGlobal } = this.props;
     const { counter } = this.state;
