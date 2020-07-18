@@ -5,7 +5,7 @@ export const RECEIVE_TOKEN_SUCCESS = 'RECEIVE_TOKEN_SUCCESS';
 export const RECEIVE_TOKEN_ERROR = 'RECEIVE_TOKEN_ERROR';
 export const SAVE_QUESTIONS = 'SAVE_QUESTIONS';
 export const USER_LOGIN = 'USER_LOGIN';
-export const UPDATE_SETTINGS = 'UPDATE_SETTINGS';
+export const SAVE_SETTINGS = 'SAVE_SETTINGS';
 
 export const requestToken = () => ({
   type: REQUEST_TOKEN,
@@ -41,7 +41,7 @@ export const userLogin = ({ userName, userEmail }) => ({
   userEmail,
 });
 
-export const updateSettings = (settings) => ({
-  type: UPDATE_SETTINGS,
+export const saveSettings = (settings) => ({
+  type: SAVE_SETTINGS,
   settings,
 })

@@ -4,7 +4,7 @@ import {
   RECEIVE_TOKEN_SUCCESS,
   RECEIVE_TOKEN_ERROR,
   USER_LOGIN,
-  UPDATE_SETTINGS,
+  SAVE_SETTINGS,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -53,7 +53,7 @@ function reducer(state = INITIAL_STATE, action) {
         },
         isLogged: true,
       };
-    case UPDATE_SETTINGS:
+    case SAVE_SETTINGS:
       return {
         ...state,
         settings: action.settings,

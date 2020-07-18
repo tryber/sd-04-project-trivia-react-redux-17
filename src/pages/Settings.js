@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getCategories } from '../services/api'
+import { saveSettings } from '../redux/actions';
+import { Redirect } from 'react-router-dom';
 
 class Settings extends React.Component {
   constructor(props) {
@@ -12,7 +14,8 @@ class Settings extends React.Component {
         category: 'all',
         difficulty: 'all',
         type: 'all',
-      }
+      },
+      savedSettings: false,
     }
   }
 
@@ -88,13 +91,19 @@ class Settings extends React.Component {
   }
 
   handleSubmit() {
-
+    const { settings } = this.state;
+    const { saveReducerSettings } = this.props;
+    saveReducerSettings(settings);
+    this.setState((state) => ({
+      ...state,
+      savedSettings: true,
+    }));
   }
 
   render() {
-    const { categories } = this.state;
+    const { categories, savedSettings } = this.state;
     if (categories.length === 0) return (<p>Loading...</p>);
-    console.log(categories);
+    if (savedSettings) return (<Redirect to="/" />)
     return (
       <div>
         <h1 data-testid="settings-title">Settings</h1>
@@ -102,7 +111,7 @@ class Settings extends React.Component {
           {this.renderCategories(categories)}
           {this.renderDifficulties()}
           {this.renderTypes()}
-          <button type="button" onSubmit={this.handleSubmit}>SAVE SETTINGS</button>
+          <button type="button" onClick={() => this.handleSubmit()}>SAVE SETTINGS</button>
         </form>
       </div>
     );
@@ -114,7 +123,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
+  saveReducerSettings: (settings) => dispatch(saveSettings(settings)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);
