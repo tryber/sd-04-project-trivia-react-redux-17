@@ -1,4 +1,4 @@
-import { getToken, getCategories } from '../../services/api';
+import { getToken } from '../../services/api';
 
 export const REQUEST_TOKEN = 'REQUEST_TOKEN';
 export const RECEIVE_TOKEN_SUCCESS = 'RECEIVE_TOKEN_SUCCESS';
@@ -42,27 +42,3 @@ export const userLogin = ({ userName, userEmail }) => ({
   userName,
   userEmail,
 });
-
-export const requestCategories = () => ({
-  type: REQUEST_CATEGORIES,
-});
-
-export const receivedCategoriesSuccess = (data) => ({
-  type: RECEIVE_CATEGORIES_SUCCESS,
-  data,
-});
-
-export const receivedCategoriesError = (error) => ({
-  type: RECEIVE_CATEGORIES_ERROR,
-  error,
-});
-
-export function fetchCategories() {
-  return (dispatch) => {
-    dispatch(requestCategories());
-    return getCategories().then(
-      (data) => dispatch(receivedCategoriesSuccess(data)),
-      (error) => dispatch(receivedCategoriesError(error.message)),
-    );
-  };
-}
