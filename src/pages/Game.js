@@ -1,50 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchTrivia } from '../redux/actions';
+import { fetchToken } from '../redux/actions';
 import { getQuestions } from '../services/api';
 import Header from '../components/Header';
 import Ranking from './Ranking';
+import Timer from '../components/Timer';
+import './Game.css';
+import Questions from '../components/Questions';
 
-function shuffleArray(received) {
-  const array = [...received];
-  for (let i = array.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-function renderQuestion(currentQuestion) {
-  const {
-    incorrect_answers: incorrectAnswers,
-    correct_answer: correctAnswer,
-    category,
-    question,
-  } = currentQuestion;
-  let questions = [...incorrectAnswers, correctAnswer];
-  questions = shuffleArray(questions);
-
-  return (
-    <div>
-      <h2 data-testid="question-category">{category}</h2>
-      <h1 data-testid="question-text">{question}</h1>
-      <div>
-        {questions.map((elem) => {
-          if (elem === correctAnswer) {
-            return <input type="button" key={elem} data-testid="correct-answer" value={elem} />;
-          }
-          return (
-            <input
-              type="button"
-              data-testid={`wrong-answer-${incorrectAnswers.indexOf(elem)}`}
-              value={elem}
-            />
-          );
-        })}
-      </div>
-    </div>
-  );
+function disableButtons() {
+  const wrong = Array.from(document.querySelectorAll('.wrong'));
+  const correct = document.querySelector('.correct');
+  wrong.forEach((item) => {
+    item.setAttribute('disabled', true);
+  });
+  correct.setAttribute('disabled', true);
+  const next = document.querySelector('.next');
+  next.style.display = 'block';
 }
 
 class Game extends Component {
@@ -52,7 +25,6 @@ class Game extends Component {
     super(props);
     this.state = {
       questions: [],
-      counter: 0,
     };
   }
 
@@ -64,27 +36,34 @@ class Game extends Component {
   }
 
   render() {
-    const { isFetching } = this.props;
-    const { questions, counter } = this.state;
+    const { isFetching, timer } = this.props;
+    const { questions } = this.state;
     if (isFetching || questions.length === 0) return <p>Loading...</p>;
-    console.log(questions);
+    if (timer === 0) disableButtons();
+
     return (
       <div>
         <Header />
-        {renderQuestion(questions[counter])}
         <Ranking />
+        <Questions
+          questions={questions}
+          goToNextQuestion={this.goToNextQuestion}
+        />
+        <Timer />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  isFething: state.reducer.isFetching,
+  isFetching: state.reducer.isFetching,
   token: state.reducer.token,
+  timer: state.reducer.timer,
+  // assertions: state.reducer.player.score,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTriviaToken: () => dispatch(fetchTrivia()),
+  fetchTriviaToken: () => dispatch(fetchToken()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
@@ -93,4 +72,5 @@ Game.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
   fetchTriviaToken: PropTypes.func.isRequired,
+  timer: PropTypes.number.isRequired,
 };

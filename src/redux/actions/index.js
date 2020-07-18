@@ -6,6 +6,10 @@ export const RECEIVE_TOKEN_ERROR = 'RECEIVE_TOKEN_ERROR';
 export const SAVE_QUESTIONS = 'SAVE_QUESTIONS';
 export const USER_LOGIN = 'USER_LOGIN';
 export const RESET_USER_LOGIN = 'RESET_USER_LOGIN';
+export const SAVE_SETTINGS = 'SAVE_SETTINGS';
+export const ADD_ASSERTION = 'ADD_ASSERTION';
+export const SET_TIMER = 'SET_TIMER';
+export const RESET_TIMER = 'RESET_TIMER';
 
 export const requestToken = () => ({
   type: REQUEST_TOKEN,
@@ -21,7 +25,7 @@ export const receivedTokenError = (error) => ({
   error,
 });
 
-export function fetchTrivia() {
+export function fetchToken() {
   return (dispatch) => {
     dispatch(requestToken());
     return getToken().then(
@@ -43,4 +47,22 @@ export const userLogin = ({ userName, userEmail }) => ({
 
 export const resetUserLogin = () => ({
   type: RESET_USER_LOGIN,
+});
+
+export const saveSettings = (settings) => ({
+  type: SAVE_SETTINGS,
+  settings,
+});
+                                           
+export const addAssertion = (difficulty) => ({
+  type: ADD_ASSERTION,
+  difficulty,
+});
+
+export const setTimer = () => ({
+  type: SET_TIMER,
+});
+
+export const resetTimer = () => ({
+  type: RESET_TIMER,
 });
