@@ -126,7 +126,7 @@ class Settings extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  settings: state.settingsReducer.settings,
+  settings: state.reducer.settings,
 });
 
 const mapDispatchToProps = (dispatch) => ({
