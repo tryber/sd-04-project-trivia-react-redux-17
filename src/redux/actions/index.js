@@ -53,7 +53,7 @@ export const saveSettings = (settings) => ({
   type: SAVE_SETTINGS,
   settings,
 });
-                                           
+
 export const addAssertion = (difficulty) => ({
   type: ADD_ASSERTION,
   difficulty,
