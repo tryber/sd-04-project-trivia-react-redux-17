@@ -5,9 +5,7 @@ export const RECEIVE_TOKEN_SUCCESS = 'RECEIVE_TOKEN_SUCCESS';
 export const RECEIVE_TOKEN_ERROR = 'RECEIVE_TOKEN_ERROR';
 export const SAVE_QUESTIONS = 'SAVE_QUESTIONS';
 export const USER_LOGIN = 'USER_LOGIN';
-export const REQUEST_CATEGORIES = 'REQUEST_CATEGORIES';
-export const RECEIVE_CATEGORIES_SUCCESS = 'RECEIVE_CATEGORIES_SUCCESS';
-export const RECEIVE_CATEGORIES_ERROR = 'RECEIVE_CATEGORIES_ERROR';
+export const UPDATE_SETTINGS = 'UPDATE_SETTINGS';
 
 export const requestToken = () => ({
   type: REQUEST_TOKEN,
@@ -42,3 +40,8 @@ export const userLogin = ({ userName, userEmail }) => ({
   userName,
   userEmail,
 });
+
+export const updateSettings = (settings) => ({
+  type: UPDATE_SETTINGS,
+  settings,
+})

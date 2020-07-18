@@ -1,5 +1,11 @@
 import { combineReducers } from 'redux';
-import { REQUEST_TOKEN, RECEIVE_TOKEN_SUCCESS, RECEIVE_TOKEN_ERROR, USER_LOGIN } from '../actions';
+import {
+  REQUEST_TOKEN,
+  RECEIVE_TOKEN_SUCCESS,
+  RECEIVE_TOKEN_ERROR,
+  USER_LOGIN,
+  UPDATE_SETTINGS,
+} from '../actions';
 
 const INITIAL_STATE = {
   isFetching: true,
@@ -46,6 +52,11 @@ function reducer(state = INITIAL_STATE, action) {
           gravatarEmail: action.userEmail,
         },
         isLogged: true,
+      };
+    case UPDATE_SETTINGS:
+      return {
+        ...state,
+        settings: action.settings,
       };
     default:
       return state;
