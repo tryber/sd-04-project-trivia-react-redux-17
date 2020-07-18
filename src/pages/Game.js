@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { fetchToken } from '../redux/actions';
 import { getQuestions } from '../services/api';
 import Header from '../components/Header';
-import Ranking from './Ranking';
 import Timer from '../components/Timer';
 import './Game.css';
 import Questions from '../components/Questions';
@@ -44,7 +43,6 @@ class Game extends Component {
     return (
       <div>
         <Header />
-        <Ranking />
         <Questions
           questions={questions}
           goToNextQuestion={this.goToNextQuestion}
