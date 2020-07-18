@@ -9,12 +9,26 @@ function Feedback({ player: { assertions, score } }) {
     <div>
       <Header />
       <div>
-        <h3 data-testid="feedback-text">{assertions < 3 ? 'Podia ser melhor...' : 'Mandou bem!'}</h3>
-        <p data-testid="feedback-total-score">Você acertou {assertions} questões!</p>
-        <p data-testid="feedback-total-questions">Um total de {score} pontos</p>
-        <Link data-testid="btn-ranking" to="/ranking">VER RANKING</Link>
+        <h3 data-testid="feedback-text">
+          {assertions < 3 ? 'Podia ser melhor...' : 'Mandou bem!'}
+        </h3>
+        <p data-testid="feedback-total-score">
+          Você acertou
+          {assertions}
+          questões!
+        </p>
+        <p data-testid="feedback-total-questions">
+          Um total de
+          {score}
+          pontos
+        </p>
+        <Link data-testid="btn-ranking" to="/ranking">
+          VER RANKING
+        </Link>
         <br />
-        <Link data-testid="btn-play-again" to="/game">JOGAR NOVAMENTE</Link>
+        <Link data-testid="btn-play-again" to="/">
+          JOGAR NOVAMENTE
+        </Link>
       </div>
     </div>
   );
