@@ -39,6 +39,13 @@ function calculateScore(timer, difficulty) {
 }
 
 function reducer(state = INITIAL_STATE, action) {
+  const { player } = state;
+  const localState = {
+    player,
+  };
+  window.localStorage.setItem('state', JSON.stringify(localState));
+  console.log(localStorage.getItem('state'));
+
   switch (action.type) {
     case REQUEST_TOKEN:
       return {
@@ -70,12 +77,12 @@ function reducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         isLogged: false,
-      }
+      };
     case SAVE_SETTINGS:
       return {
         ...state,
         settings: action.settings,
-      }
+      };
     case ADD_ASSERTION: {
       return {
         ...state,
