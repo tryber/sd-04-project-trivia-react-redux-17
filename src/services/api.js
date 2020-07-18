@@ -29,9 +29,9 @@ export const getQuestions = async (token) => {
 };
 
 export const getCategories = async () => {
-  const URL_CATEGORIES = "https://opentdb.com/api_category.php";
-  const responde = await fetch(URL_CATEGORIES);
-  const json = responde.json();
-  const data = await (responde.ok ? Promise.resolve(json) : Promise.reject(json));
+  const URL_CATEGORIES = 'https://opentdb.com/api_category.php';
+  const response = await fetch(URL_CATEGORIES);
+  const json = response.json();
+  const data = await (response.ok ? Promise.resolve(json) : Promise.reject(json));
   return data;
 };

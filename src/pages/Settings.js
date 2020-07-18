@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { getCategories } from '../services/api'
-import { saveSettings } from '../redux/actions';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { getCategories } from '../services/api';
+import { saveSettings } from '../redux/actions';
 
 class Settings extends React.Component {
   constructor(props) {
@@ -16,35 +16,49 @@ class Settings extends React.Component {
         type: 'all',
       },
       savedSettings: false,
-    }
+    };
   }
 
   async componentDidMount() {
-    const categories = await getCategories();
     const { settings } = this.props;
-    this.setState((state) => ({
-      ...state,
-      categories: categories["trivia_categories"],
-      settings,
-    }));
+    getCategories()
+      .then((categories) => {
+        this.setState((state) => ({
+          ...state,
+          categories: categories.trivia_categories,
+          settings,
+        }));
+      })
+      .catch((error) => { throw error })
   }
 
   onChangeUpdateSettings(field, value) {
     this.setState(({ categories, settings }) => ({
-      categories: [...categories,],
+      categories: [...categories],
       settings: {
         ...settings,
         [field]: value,
-      }
+      },
     }));
   }
-
+  
+  handleSubmit() {
+    const { settings } = this.state;
+    const { saveReducerSettings } = this.props;
+    saveReducerSettings(settings);
+    this.setState((state) => ({
+      ...state,
+      savedSettings: true,
+    }));
+  }
+  
   renderCategories(categories) {
     const { category } = this.state.settings;
     return (
       <fieldset>
-        <label>Category</label>
+        <label htmlFor="category">Category</label>
         <select
+          id="category"
           value={category}
           onChange={(e) => this.onChangeUpdateSettings('category', e.target.value)}
         >
@@ -59,8 +73,9 @@ class Settings extends React.Component {
     const { difficulty } = this.state.settings;
     return (
       <fieldset>
-        <label>Difficulty</label>
+        <label htmlFor="difficulty">Difficulty</label>
         <select
+          id="difficulty"
           value={difficulty}
           onChange={(e) => this.onChangeUpdateSettings('difficulty', e.target.value)}
         >
@@ -77,8 +92,9 @@ class Settings extends React.Component {
     const { type } = this.state.settings;
     return (
       <fieldset>
-        <label>Type</label>
+        <label htmlFor="type">Type</label>
         <select
+          id="type"
           value={type}
           onChange={(e) => this.onChangeUpdateSettings('type', e.target.value)}
         >
@@ -90,20 +106,11 @@ class Settings extends React.Component {
     );
   }
 
-  handleSubmit() {
-    const { settings } = this.state;
-    const { saveReducerSettings } = this.props;
-    saveReducerSettings(settings);
-    this.setState((state) => ({
-      ...state,
-      savedSettings: true,
-    }));
-  }
 
   render() {
     const { categories, savedSettings } = this.state;
     if (categories.length === 0) return (<p>Loading...</p>);
-    if (savedSettings) return (<Redirect to="/" />)
+    if (savedSettings) return (<Redirect to="/" />);
     return (
       <div>
         <h1 data-testid="settings-title">Settings</h1>
@@ -130,4 +137,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Settings);
 
 Settings.propTypes = {
   settings: PropTypes.objectOf(PropTypes.object).isRequired,
+  saveReducerSettings: PropTypes.func.isRequired,
 };

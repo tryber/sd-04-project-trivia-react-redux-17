@@ -22,7 +22,7 @@ const INITIAL_STATE = {
     category: 'all',
     difficulty: 'all',
     type: 'all',
-  }
+  },
 };
 
 function reducer(state = INITIAL_STATE, action) {

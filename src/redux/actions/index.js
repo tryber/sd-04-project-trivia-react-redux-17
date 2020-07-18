@@ -44,4 +44,4 @@ export const userLogin = ({ userName, userEmail }) => ({
 export const saveSettings = (settings) => ({
   type: SAVE_SETTINGS,
   settings,
-})
+});
