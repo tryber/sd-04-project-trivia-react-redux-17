@@ -29,7 +29,7 @@ class Settings extends React.Component {
           settings,
         }));
       })
-      .catch((error) => { throw error })
+      .catch((error) => { throw error });
   }
 
   onChangeUpdateSettings(field, value) {
@@ -41,7 +41,7 @@ class Settings extends React.Component {
       },
     }));
   }
-  
+
   handleSubmit() {
     const { settings } = this.state;
     const { saveReducerSettings } = this.props;
@@ -51,7 +51,7 @@ class Settings extends React.Component {
       savedSettings: true,
     }));
   }
-  
+
   renderCategories(categories) {
     const { category } = this.state.settings;
     return (
@@ -126,7 +126,7 @@ class Settings extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  settings: state.reducer.settings,
+  settings: state.settingsReducer.settings,
 });
 
 const mapDispatchToProps = (dispatch) => ({

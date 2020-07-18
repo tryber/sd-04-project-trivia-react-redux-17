@@ -18,11 +18,6 @@ const INITIAL_STATE = {
   },
   // ranking: [{ name: '', score: 0, picture: '' }],
   isLogged: false,
-  settings: {
-    category: 'all',
-    difficulty: 'all',
-    type: 'all',
-  },
 };
 
 function reducer(state = INITIAL_STATE, action) {
@@ -53,6 +48,21 @@ function reducer(state = INITIAL_STATE, action) {
         },
         isLogged: true,
       };
+    default:
+      return state;
+  }
+}
+
+const INITIAL_SETTINGS = {
+  settings: {
+    category: 'all',
+    difficulty: 'all',
+    type: 'all',
+  }
+}
+
+function settingsReducer(state = INITIAL_SETTINGS, action) {
+  switch (action.type) {
     case SAVE_SETTINGS:
       return {
         ...state,
@@ -65,6 +75,7 @@ function reducer(state = INITIAL_STATE, action) {
 
 const rootReducer = combineReducers({
   reducer,
+  settingsReducer,
 });
 
 export default rootReducer;
