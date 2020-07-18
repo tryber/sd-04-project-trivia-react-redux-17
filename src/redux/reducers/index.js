@@ -12,6 +12,11 @@ const INITIAL_STATE = {
   },
   // ranking: [{ name: '', score: 0, picture: '' }],
   isLogged: false,
+  settings: {
+    category: 'all',
+    difficulty: 'all',
+    type: 'all',
+  }
 };
 
 function reducer(state = INITIAL_STATE, action) {
