@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchToken, addAssertion } from '../redux/actions';
+import { fetchToken } from '../redux/actions';
 import { getQuestions } from '../services/api';
 import Header from '../components/Header';
 import Timer from '../components/Timer';
@@ -35,7 +35,7 @@ class Game extends Component {
   }
 
   render() {
-    const { isFetching, addCorrectAssertion, timer } = this.props;
+    const { isFetching, timer } = this.props;
     const { questions } = this.state;
     if (isFetching || questions.length === 0) return <p>Loading...</p>;
     if (timer === 0) disableButtons();
@@ -45,10 +45,8 @@ class Game extends Component {
         <Header />
         <Questions
           questions={questions}
-          addCorrectAssertion={addCorrectAssertion}
           goToNextQuestion={this.goToNextQuestion}
         />
-        {/* {renderQuestion(questions[counter], addCorrectAssertion, this.goToNextQuestion)} */}
         <Timer />
       </div>
     );
@@ -64,7 +62,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchTriviaToken: () => dispatch(fetchToken()),
-  addCorrectAssertion: () => dispatch(addAssertion()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
@@ -73,6 +70,5 @@ Game.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
   fetchTriviaToken: PropTypes.func.isRequired,
-  addCorrectAssertion: PropTypes.func.isRequired,
   timer: PropTypes.number.isRequired,
 };

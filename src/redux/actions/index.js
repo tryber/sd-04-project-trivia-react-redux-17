@@ -43,8 +43,9 @@ export const userLogin = ({ userName, userEmail }) => ({
   userEmail,
 });
 
-export const addAssertion = () => ({
+export const addAssertion = (difficulty) => ({
   type: ADD_ASSERTION,
+  difficulty,
 });
 
 export const setTimer = () => ({

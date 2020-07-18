@@ -23,6 +23,14 @@ const INITIAL_STATE = {
   isLogged: false,
 };
 
+function calculateScore(timer, difficulty) {
+  let level;
+  if (difficulty === 'hard') level = 3;
+  if (difficulty === 'medium') level = 2;
+  if (difficulty === 'easy') level = 1;
+  return 10 + timer * level;
+}
+
 function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case REQUEST_TOKEN:
@@ -51,14 +59,16 @@ function reducer(state = INITIAL_STATE, action) {
         },
         isLogged: true,
       };
-    case ADD_ASSERTION:
+    case ADD_ASSERTION: {
       return {
         ...state,
         player: {
           ...state.player,
           assertions: state.player.assertions + 1,
+          score: state.player.score + calculateScore(state.timer, action.difficulty),
         },
       };
+    }
     case SET_TIMER:
       return {
         ...state,

@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  setTimer,
-  resetTimer,
-} from '../redux/actions';
+import { setTimer, resetTimer } from '../redux/actions';
 
 class Timer extends Component {
   componentDidMount() {
-    const { setTimerGlobal, resetTimerGlobal, timer } = this.props;
-    if (timer === 0) {
-      resetTimerGlobal();
-    }
-    setInterval(() => {
+    const { setTimerGlobal, resetTimerGlobal } = this.props;
+    let counter = 0;
+    const looper = setInterval(() => {
+      counter += 1;
       setTimerGlobal();
+      if (counter >= 30) {
+        clearInterval(looper);
+        resetTimerGlobal();
+      }
     }, 1000);
   }
 
