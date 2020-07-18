@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchTrivia } from '../redux/actions';
 import { getQuestions } from '../services/api';
 import Header from '../components/Header';
+import Ranking from './Ranking';
 
 function shuffleArray(received) {
   const array = [...received];
@@ -71,6 +72,7 @@ class Game extends Component {
       <div>
         <Header />
         {renderQuestion(questions[counter])}
+        <Ranking />
       </div>
     );
   }
