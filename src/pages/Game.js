@@ -8,6 +8,17 @@ import Timer from '../components/Timer';
 import './Game.css';
 import Questions from '../components/Questions';
 
+function disableButtons() {
+  const wrong = Array.from(document.querySelectorAll('.wrong'));
+  const correct = document.querySelector('.correct');
+  wrong.forEach((item) => {
+    item.setAttribute('disabled', true);
+  });
+  correct.setAttribute('disabled', true);
+  const next = document.querySelector('.next');
+  next.style.display = 'block';
+}
+
 class Game extends Component {
   constructor(props) {
     super(props);
@@ -23,21 +34,12 @@ class Game extends Component {
     this.setState({ questions: questions.results });
   }
 
-  // setTimer() {
-  //   this.setState((state) => {
-  //     if (state.timer === 0) return { timer: 30 };
-  //     return { timer: state.timer - 1 };
-  //   });
-  // }
-
-  // resetTimer() {
-  //   this.setState({ timer: 30 });
-  // }
-
   render() {
-    const { isFetching, addCorrectAssertion } = this.props;
+    const { isFetching, addCorrectAssertion, timer } = this.props;
     const { questions } = this.state;
     if (isFetching || questions.length === 0) return <p>Loading...</p>;
+    if (timer === 0) disableButtons();
+
     return (
       <div>
         <Header />
@@ -56,7 +58,7 @@ class Game extends Component {
 const mapStateToProps = (state) => ({
   isFetching: state.reducer.isFetching,
   token: state.reducer.token,
-  // timer: state.reducer.timer,
+  timer: state.reducer.timer,
   // assertions: state.reducer.player.score,
 });
 
@@ -72,4 +74,5 @@ Game.propTypes = {
   token: PropTypes.string.isRequired,
   fetchTriviaToken: PropTypes.func.isRequired,
   addCorrectAssertion: PropTypes.func.isRequired,
+  timer: PropTypes.number.isRequired,
 };
