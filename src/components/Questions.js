@@ -149,6 +149,7 @@ class Questions extends Component {
 const mapStateToProps = (state) => ({
   timer: state.reducer.timer,
   player: state.reducer.player,
+  ranking: state.reducer.ranking,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -159,11 +160,8 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);
 
 Questions.propTypes = {
-  questions: PropTypes.arrayOf(PropTypes.object).isRequired,
   addCorrectAssertion: PropTypes.func.isRequired,
-  resetTimerGlobal: PropTypes.func.isRequired,
   player: PropTypes.objectOf(PropTypes.any).isRequired,
-  // token: PropTypes.string.isRequired,
-  // // score: PropTypes.number.isRequired,
-  // // assertions: PropTypes.number.isRequired,
+  questions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  resetTimerGlobal: PropTypes.func.isRequired,
 };

@@ -10,6 +10,7 @@ export const SAVE_SETTINGS = 'SAVE_SETTINGS';
 export const ADD_ASSERTION = 'ADD_ASSERTION';
 export const SET_TIMER = 'SET_TIMER';
 export const RESET_TIMER = 'RESET_TIMER';
+export const UPDATE_RANKING = 'UPDATE_RANKING';
 
 export const requestToken = () => ({
   type: REQUEST_TOKEN,
@@ -35,10 +36,12 @@ export function fetchToken() {
   };
 }
 
-export const saveQuestions = (questions) => ({
+export const saveQuestions = (questions, score) => ({
   type: SAVE_QUESTIONS,
   questions,
+  score,
 });
+
 export const userLogin = ({ userName, userEmail }) => ({
   type: USER_LOGIN,
   userName,
@@ -65,4 +68,11 @@ export const setTimer = () => ({
 
 export const resetTimer = () => ({
   type: RESET_TIMER,
+});
+
+export const updateRanking = (name, score, picture) => ({
+  type: UPDATE_RANKING,
+  name,
+  score,
+  picture,
 });
