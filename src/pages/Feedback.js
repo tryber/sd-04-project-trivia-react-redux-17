@@ -54,6 +54,6 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Feedback);
 
 Feedback.propTypes = {
-  player: PropTypes.objectOf(PropTypes.object).isRequired,
+  player: PropTypes.objectOf(PropTypes.any).isRequired,
   resetLoginStorage: PropTypes.func.isRequired,
 };

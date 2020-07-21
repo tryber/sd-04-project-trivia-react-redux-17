@@ -9,6 +9,7 @@ import {
   ADD_ASSERTION,
   SET_TIMER,
   RESET_TIMER,
+  UPDATE_RANKING,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -21,7 +22,7 @@ const INITIAL_STATE = {
     gravatarEmail: '',
   },
   timer: 30,
-  // ranking: [{ name: '', score: 0, picture: '' }],
+  ranking: [],
   isLogged: false,
   settings: {
     category: 'all',
@@ -95,6 +96,18 @@ function reducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         timer: 30,
+      };
+    case UPDATE_RANKING:
+      return {
+        ...state,
+        ranking: [
+          ...state.ranking,
+          {
+            name: action.name,
+            score: action.score,
+            picture: action.picture,
+          },
+        ],
       };
     default:
       return state;
