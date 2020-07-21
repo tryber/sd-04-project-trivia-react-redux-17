@@ -41,5 +41,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(Feedback);
 
 Feedback.propTypes = {
-  player: PropTypes.objectOf(PropTypes.object).isRequired,
+  player: PropTypes.objectOf(PropTypes.any).isRequired,
 };
