@@ -11,6 +11,7 @@ export const ADD_ASSERTION = 'ADD_ASSERTION';
 export const SET_TIMER = 'SET_TIMER';
 export const RESET_TIMER = 'RESET_TIMER';
 export const UPDATE_RANKING = 'UPDATE_RANKING';
+export const RESET_PLAYER = 'RESET_PLAYER';
 
 export const requestToken = () => ({
   type: REQUEST_TOKEN,
@@ -75,4 +76,8 @@ export const updateRanking = (name, score, picture) => ({
   name,
   score,
   picture,
+});
+
+export const resetPlayer = () => ({
+  type: RESET_PLAYER,
 });

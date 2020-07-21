@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { getToken } from '../services/api';
-import { userLogin } from '../redux/actions';
+import { userLogin, resetTimer, resetPlayer } from '../redux/actions';
 
 class Login extends React.Component {
   constructor(props) {
@@ -17,7 +17,9 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
+    const { resetToEmptyPlayer } = this.props;
     localStorage.removeItem('token');
+    resetToEmptyPlayer();
   }
 
   handleChange(field, value) {
@@ -79,11 +81,15 @@ class Login extends React.Component {
   }
 
   renderButton() {
+    const { resetTimerGlobal } = this.props;
     return (
       <button
         data-testid="btn-play"
         disabled={this.isDisabled()}
-        onClick={() => this.handleButtonPlay()}
+        onClick={() => {
+          this.handleButtonPlay();
+          resetTimerGlobal();
+        }}
         type="button"
       >
         Jogar
@@ -121,6 +127,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   userLoginStorage: (storage) => dispatch(userLogin(storage)),
+  resetTimerGlobal: () => dispatch(resetTimer()),
+  resetToEmptyPlayer: () => dispatch(resetPlayer()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
@@ -128,4 +136,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(Login);
 Login.propTypes = {
   userLoginStorage: PropTypes.func.isRequired,
   userIsLogged: PropTypes.bool.isRequired,
+  resetTimerGlobal: PropTypes.func.isRequired,
+  resetToEmptyPlayer: PropTypes.func.isRequired,
 };

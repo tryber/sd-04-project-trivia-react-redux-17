@@ -3,20 +3,24 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setTimer, resetTimer } from '../redux/actions';
 
+const looper = (setTimerGlobal, timer, resetTimerGlobal) => setInterval(() => {
+  setTimerGlobal();
+  if (timer === 0) {
+    resetTimerGlobal();
+  }
+}, 1000);
+
 class Timer extends Component {
   componentDidMount() {
     const { setTimerGlobal, resetTimerGlobal, timer } = this.props;
     if (timer === 0) {
       resetTimerGlobal();
     }
+    looper(setTimerGlobal, timer, resetTimerGlobal);
+  }
 
-    const looper = setInterval(() => {
-      setTimerGlobal();
-      if (timer === 0) {
-        resetTimerGlobal();
-        clearInterval(looper);
-      }
-    }, 1000);
+  componentWillUnmount() {
+    clearInterval(looper);
   }
 
   render() {
