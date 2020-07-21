@@ -10,6 +10,7 @@ import {
   SET_TIMER,
   RESET_TIMER,
   UPDATE_RANKING,
+  RESET_PLAYER,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -71,6 +72,16 @@ function reducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         isLogged: false,
+      };
+    case RESET_PLAYER:
+      return {
+        ...state,
+        player: {
+          name: '',
+          assertions: 0,
+          score: 0,
+          gravatarEmail: '',
+        },
       };
     case SAVE_SETTINGS:
       return {
